@@ -24,7 +24,7 @@ class Html extends \yii\helpers\Html
             $divOptions = isset($options['divOptions']) ? $options['divOptions'] : [];
             Html::addCssClass($divOptions, 'radio');
             unset($options['label'], $options['labelOptions'], $options['divOptions']);
-            $options['id'] = str_replace(['[]', '][', '[', ']', ' '], ['', '-', '-', '', '-'], $name) . '-' . $value;
+            $options['id'] = isset($options['id']) ? $options['id'] : strtolower(str_replace(['[]', '][', '[', ']', ' ', '.'], ['', '-', '-', '', '-', '-'], $name)) . '-' . $value;
             $content = Html::tag('div', static::input('radio', $name, $value, $options)
                 . static::label($label, $options['id'], $labelOptions), $divOptions);
             return $hidden . $content;
@@ -53,7 +53,7 @@ class Html extends \yii\helpers\Html
             $divOptions = isset($options['divOptions']) ? $options['divOptions'] : [];
             Html::addCssClass($divOptions, 'checkbox');
             unset($options['label'], $options['labelOptions'], $options['divOptions']);
-            $options['id'] = str_replace(['[]', '][', '[', ']', ' '], ['', '-', '-', '', '-'], $name) . '-' . $value;
+            $options['id'] = isset($options['id']) ? $options['id'] : strtolower(str_replace(['[]', '][', '[', ']', ' ', '.'], ['', '-', '-', '', '-', '-'], $name)) . '-' . $value;
             $content = Html::tag('div', static::input('checkbox', $name, $value, $options)
                 . static::label($label, $options['id'], $labelOptions), $divOptions);
             return $hidden . $content;
